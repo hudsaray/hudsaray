@@ -25,6 +25,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            
         }
 
         /* Textura sutil */
@@ -38,6 +39,10 @@
             pointer-events: none;
             z-index: 1;
         }
+        
+        .container-links img:hover {
+    filter: invert(1) sepia(1) saturate(8) hue-rotate(20deg) drop-shadow(0 0 15px gold);
+}
 
         .content {
             position: relative;
@@ -67,6 +72,47 @@
                 4px 4px 10px rgba(0, 0, 0, 0.95);
             letter-spacing: 4px;
         }
+        /* Prepara o link para segurar o balãozinho na posição certa */
+.container-links a {
+    position: relative;
+}
+
+/* Criando o Tooltip Personalizado */
+.container-links a::after {
+    content: attr(data-title); /* Pega o texto do data-title do HTML */
+    position: absolute;
+    bottom: -40px;            /* Joga o balãozinho para baixo do ícone */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Centraliza e começa um pouco mais baixo */
+    background: rgba(0, 0, 0, 0.85); /* Fundo preto semi-transparente */
+    color: #e8c670;           /* Texto no mesmo dourado do seu título */
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #b8860b; /* Borda dourada fina */
+    white-space: nowrap;      /* Evita que o texto quebre linha */
+    box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
+    
+    /* Estado inicial: Invisível */
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+/* Efeito de Aparecer no Hover */
+.container-links a:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Sobe suavemente sumindo o delay */
+}
+
+/* Esconde o tooltip no celular para não atrapalhar o toque */
+@media (max-width: 768px) {
+    .container-links a::after {
+        display: none !important;
+    }
+}
         
         .container-links {
             margin-top: 45px;
@@ -75,10 +121,9 @@
         .container-links a {
             font-size: 78px;
             margin: 0 25px;
-            color: #d4af37;
+            color: #5865F2;
             text-decoration: none;
             transition: all 0.4s ease;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
         
         .container-links a:hover {
@@ -153,15 +198,28 @@
         </figure>
 
         <div class="container-links">
-            <a href="https://discord.com/users/1241414257480830996" target="_blank" title="Discord">
-                <i class="fa-brands fa-discord"></i>
-            </a>
-            <a href="https://steamcommunity.com/id/Hudsaray/" target="_blank" title="Steam">
-                <i class="fa-brands fa-steam"></i>
-            </a>
-            <a href="https://account.xbox.com/pt-BR/profile?gamertag=hudsaray" target="_blank" title="Xbox">
-                <i class="fa-brands fa-xbox"></i>
-            </a>
+            <a href="https://discord.com/users/1241414257480830996" target="_blank" data-title="Discord" 
+            style="width:70px; height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
+            <i class="fa-brands fa-discord"></i>
+
+        <a href="https://steamcommunity.com/id/Hudsaray/" target="_blank" data-title="Steam">   
+        <img src="Steam_icon_logo.svg" 
+         alt="steam"
+         style=" height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
+        </a>
+
+            <a href="https://account.xbox.com/pt-BR/profile?gamertag=hudsaray" target="_blank" data-title="XBOX">
+         <img src="Xbox_one_logo.svg" 
+         alt="Xbox" class="xbox-liquid"
+         style="width:70px; height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
+        </a>
+
+        <a href="https://launcher.store.epicgames.com/u/15ec38a4dd564616934cf7ac0802aa47" target="_blank" data-title="Epic Games">
+        <img src="Epic_Games_logo.svg" 
+         alt="Epic Games"
+         style="width:70px; height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
+        </a>
+
         </div>
     </div>
 
