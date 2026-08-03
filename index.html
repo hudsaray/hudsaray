@@ -4,230 +4,981 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HudsaRay</title>
-    
+   
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    
+   
     <!-- Ringbearer Font -->
     <link href="https://fonts.cdnfonts.com/css/ringbearer" rel="stylesheet">
-    
-    <link rel="stylesheet" href="hudsaray.css">
-    
+   
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             min-height: 100vh;
-            background: #000000;
+            background: #000;
             color: #fff;
             font-family: 'Segoe UI', sans-serif;
-            text-align: center;
-            position: relative;
             display: flex;
             flex-direction: column;
-            
         }
 
-        /* Textura sutil */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* ========== CONTAINER DA CAPA + AVATAR ========== */
+        .profile-header {
+            position: relative;
+            width: calc(100% - 40px);
+            max-width: 1100px;
+            margin: 30px auto 0;
+        }
+
+        /* ========== CAPA ========== */
+        .cover-section {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 5px solid #000;
+            box-shadow: 0 0 0 3px #b8860b,
+                        0 15px 40px rgba(0,0,0,0.7);
+        }
+
+        .cover-img {
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            object-fit: cover;
+            object-position: center 25%;
+            display: block;
+            filter: brightness(0.88);
         }
-        
-        .container-links img:hover {
-    filter: invert(1) sepia(1) saturate(8) hue-rotate(20deg) drop-shadow(0 0 15px gold);
-}
 
-        .content {
-            position: relative;
-            z-index: 2;
-            padding: 60px 20px 40px;
-            flex: 1; /* Faz o conteúdo ocupar o espaço disponível */
+        .cover-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 130px;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            pointer-events: none;
         }
-        
+
+        /* ========== FOTO CIRCULAR ========== */
+        .avatar-wrapper {
+            position: absolute;
+            bottom: -95px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+        }
+
         .fotocircular {
-            width: 260px;
-            height: 260px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             border: 8px solid #b8860b;
-            box-shadow: 0 0 35px rgba(184, 134, 11, 0.7),
-                        inset 0 0 25px rgba(0,0,0,0.9);
+            box-shadow:
+                0 0 40px rgba(184, 134, 11, 0.9),
+                0 15px 35px rgba(0,0,0,0.95),
+                0 0 0 4px rgba(0,0,0,0.6);
             object-fit: cover;
+            background: #111;
+            display: block;
+            transition: transform 0.3s ease;
         }
-        
+
+        .fotocircular:hover {
+            transform: scale(1.04);
+        }
+
+        /* ========== CONTEÚDO PRINCIPAL ========== */
+        .content {
+            position: relative;
+            z-index: 5;
+            padding: 130px 20px 40px;
+            text-align: center;
+            flex: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
         .titulo {
             font-family: 'Ringbearer', serif;
-            font-size: 58px;
+            font-size: 54px;
             font-weight: bold;
             color: #e8c670;
-            margin-top: 25px;
-            text-shadow: 
+            margin-top: 5px;
+            text-shadow:
                 0 0 12px rgba(232, 198, 112, 0.9),
-                4px 4px 10px rgba(0, 0, 0, 0.95);
+                3px 3px 8px rgba(0, 0, 0, 0.95);
             letter-spacing: 4px;
         }
-        /* Prepara o link para segurar o balãozinho na posição certa */
-.container-links a {
-    position: relative;
-}
 
-/* Criando o Tooltip Personalizado */
-.container-links a::after {
-    content: attr(data-title); /* Pega o texto do data-title do HTML */
-    position: absolute;
-    bottom: -40px;            /* Joga o balãozinho para baixo do ícone */
-    left: 50%;
-    transform: translateX(-50%) translateY(10px); /* Centraliza e começa um pouco mais baixo */
-    background: rgba(0, 0, 0, 0.85); /* Fundo preto semi-transparente */
-    color: #e8c670;           /* Texto no mesmo dourado do seu título */
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid #b8860b; /* Borda dourada fina */
-    white-space: nowrap;      /* Evita que o texto quebre linha */
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
-    
-    /* Estado inicial: Invisível */
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease; /* Transição suave */
-}
-
-/* Efeito de Aparecer no Hover */
-.container-links a:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0); /* Sobe suavemente sumindo o delay */
-}
-
-/* Esconde o tooltip no celular para não atrapalhar o toque */
-@media (max-width: 768px) {
-    .container-links a::after {
-        display: none !important;
-    }
-}
-        
+        /* ========== LINKS SOCIAIS ========== */
         .container-links {
-            margin-top: 45px;
+            margin-top: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 38px;
+            flex-wrap: wrap;
         }
-        
+
         .container-links a {
-            font-size: 78px;
-            margin: 0 25px;
+            position: relative;
+            font-size: 70px;
             color: #5865F2;
             text-decoration: none;
             transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
+        .container-links a img {
+            height: 70px;
+            width: auto;
+            filter: invert(1) sepia(1) saturate(5) hue-rotate(0deg);
+            transition: 0.4s;
+        }
+
         .container-links a:hover {
             color: #ffd700;
-            transform: scale(1.28) rotate(8deg);
+            transform: scale(1.22) rotate(6deg);
             text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
 
-        /* ==================== RODAPÉ ==================== */
-        footer {
+        .container-links a:hover img {
+            filter: invert(1) sepia(1) saturate(8) hue-rotate(20deg) drop-shadow(0 0 15px gold);
+        }
+
+        .container-links a::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: -42px;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: rgba(0, 0, 0, 0.9);
+            color: #e8c670;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid #b8860b;
+            white-space: nowrap;
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .container-links a:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ========== LINHA DIVISÓRIA ========== */
+        .divider {
+            width: 100%;
+            max-width: 900px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #b8860b, transparent);
+            margin: 50px auto 30px;
+            opacity: 0.7;
+        }
+
+        /* ========== ABAS ========== */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 2px solid #b8860b;
+            color: #c9a66b;
+            font-family: 'Ringbearer', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            padding: 10px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(184, 134, 11, 0.15);
+            color: #e8c670;
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
+        }
+
+        .tab-btn.active {
+            background: #b8860b;
+            color: #000;
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.6);
+        }
+
+        /* ========== CONTEÚDO DAS ABAS ========== */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+            text-align: left;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== PROFILE ========== */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .bio-box {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #b8860b;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.15);
+        }
+
+        .bio-box h3 {
+            font-family: 'Ringbearer', serif;
+            color: #e8c670;
+            font-size: 22px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .bio-box p {
+            color: #ddd;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .fav-games h3 {
+            font-family: 'Ringbearer', serif;
+            color: #e8c670;
+            font-size: 22px;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+
+        .fav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .fav-game {
+            aspect-ratio: 2/3;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #b8860b;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            background: #111;
+        }
+
+        .fav-game img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fav-game:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(184, 134, 11, 0.5);
+        }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #b8860b;
+            border-radius: 14px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(184, 134, 11, 0.35);
+        }
+
+        .stat-number {
+            font-family: 'Ringbearer', serif;
+            font-size: 42px;
+            color: #e8c670;
+            text-shadow: 0 0 12px rgba(232, 198, 112, 0.6);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #c9a66b;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* Recent Games */
+        .section-title {
+            font-family: 'Ringbearer', serif;
+            color: #e8c670;
+            font-size: 24px;
+            margin: 40px 0 20px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .recent-games {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 45px;
+        }
+
+        .recent-card {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #b8860b;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .recent-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(184, 134, 11, 0.4);
+        }
+
+        .recent-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .recent-card .info {
+            padding: 12px;
+        }
+
+        .recent-card h4 {
+            color: #e8c670;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .recent-card span {
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* Reviews (Profile) */
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .review-item {
+            display: flex;
+            gap: 18px;
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #b8860b;
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s;
+        }
+
+        .review-item:hover {
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.3);
+        }
+
+        .review-item img {
+            width: 80px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #b8860b;
+            flex-shrink: 0;
+        }
+
+        .review-item .text h4 {
+            color: #e8c670;
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .review-item .text p {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ========== GAMES (estilo Steam) ========== */
+        .games-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .games-search {
+            background: #111;
+            border: 1px solid #b8860b;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 25px;
+            width: 260px;
+            outline: none;
+        }
+
+        .games-search::placeholder {
+            color: #888;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 18px;
+        }
+
+        .game-card {
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            border-color: #b8860b;
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.35);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game-card .name {
+            padding: 10px;
+            font-size: 14px;
+            color: #ddd;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ========== REVIEWS TAB ========== */
+        .reviews-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 35px;
+        }
+
+        .page-btn {
+            background: transparent;
+            border: 1px solid #b8860b;
+            color: #c9a66b;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.25s;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: #b8860b;
+            color: #000;
+        }
+
+        /* ========== BLOG ========== */
+        .blog-card {
             position: relative;
-            z-index: 2;
-            padding: 25px 20px;
+            width: 100%;
+            height: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #b8860b;
+            cursor: pointer;
+            transition: all 0.35s;
+        }
+
+        .blog-card:hover {
+            transform: scale(1.015);
+            box-shadow: 0 0 30px rgba(184, 134, 11, 0.5);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55);
+        }
+
+        .blog-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+        }
+
+        .blog-card h3 {
+            font-family: 'Ringbearer', serif;
+            color: #e8c670;
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .blog-card p {
+            color: #ddd;
+            font-size: 15px;
+            line-height: 1.5;
+            max-width: 700px;
+        }
+
+        /* ========== RODAPÉ ========== */
+        footer {
+            padding: 22px 20px;
             border-top: 1px solid rgba(184, 134, 11, 0.3);
-            margin-top: auto;   /* Empurra o rodapé para o final */
+            text-align: center;
+            margin-top: 40px;
         }
 
         .rodape-texto {
             font-family: 'Ringbearer', serif;
-            font-size: 23px;
+            font-size: 22px;
             color: #c9a66b;
             text-shadow: 0 0 8px rgba(201, 166, 107, 0.5);
             letter-spacing: 2px;
         }
+
+        /* ========== RESPONSIVO ========== */
+        @media (max-width: 900px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            .fav-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+            .recent-games {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-        .titulo {
-        font-size: 42px;
-        margin-top: 18px;
-        letter-spacing: 3px;
-    }
+            .profile-header {
+                width: calc(100% - 24px);
+                margin-top: 20px;
+            }
+            .cover-section {
+                height: 230px;
+                border-radius: 16px;
+                border-width: 4px;
+            }
+            .avatar-wrapper {
+                bottom: -75px;
+            }
             .fotocircular {
-        width: 180px;
-        height: 180px;
-        border-width: 6px;
-        margin: 0 auto;
-    }
-
-    .titulo {
-        font-size: 42px;
-        margin-top: 18px;
-        letter-spacing: 2px;
-    }
-
-    .container-links {
-        margin-top: 35px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-    }
-
-    .container-links a {
-        font-size: 62px;
-        margin: 0;
-    }
-
-    /* Ajuste fino no padding geral para telas menores */
-    .content {
-        padding: 40px 20px 30px;
-    }
-}
+                width: 170px;
+                height: 170px;
+                border-width: 6px;
+            }
+            .content {
+                padding-top: 100px;
+            }
+            .titulo {
+                font-size: 36px;
+                letter-spacing: 2px;
+            }
+            .container-links {
+                gap: 28px;
+                margin-top: 32px;
+            }
+            .container-links a {
+                font-size: 54px;
+            }
+            .container-links a img {
+                height: 54px;
+            }
+            .container-links a::after {
+                display: none;
+            }
+            .tab-btn {
+                font-size: 15px;
+                padding: 8px 18px;
+            }
+            .fav-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="content">
-        <figure>
+    <!-- CAPA + FOTO CIRCULAR -->
+    <div class="profile-header">
+        <div class="cover-section">
+            <img src="IMG_20260802_213329.jpg" alt="Cover" class="cover-img">
+        </div>
+        <div class="avatar-wrapper">
             <img src="foto4k.png" alt="HudsaRay" class="fotocircular">
-            <figcaption class="titulo">
-                HudsaRay
-            </figcaption>
-        </figure>
-
-        <div class="container-links">
-            <a href="https://discord.com/users/1241414257480830996" target="_blank" data-title="Discord" 
-            style="width:70px; height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
-            <i class="fa-brands fa-discord"></i>
-
-        <a href="https://steamcommunity.com/id/Hudsaray/" target="_blank" data-title="Steam">   
-        <img src="Steam_icon_logo.svg" 
-         alt="steam"
-         style=" height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
-        </a>
-
-            <a href="https://account.xbox.com/pt-BR/profile?gamertag=hudsaray" target="_blank" data-title="XBOX">
-         <img src="Xbox_one_logo.svg" 
-         alt="Xbox" class="xbox-liquid"
-         style="width:70px; height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
-        </a>
-
-        <a href="https://launcher.store.epicgames.com/u/15ec38a4dd564616934cf7ac0802aa47" target="_blank" data-title="Epic Games">
-        <img src="Epic_Games_logo.svg" 
-         alt="Epic Games"
-         style="width:70px; height:70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(deg); transition: 0.7s;">
-        </a>
-
         </div>
     </div>
 
-    <!-- Rodapé -->
+    <!-- CONTEÚDO -->
+    <div class="content">
+        <h1 class="titulo">HudsaRay</h1>
+
+        <div class="container-links">
+            <a href="https://discord.com/users/1241414257480830996" target="_blank" data-title="Discord">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+            <a href="https://steamcommunity.com/id/Hudsaray/" target="_blank" data-title="Steam">
+                <img src="Steam_icon_logo.svg" alt="Steam">
+            </a>
+            <a href="https://account.xbox.com/pt-BR/profile?gamertag=hudsaray" target="_blank" data-title="Xbox">
+                <img src="Xbox_one_logo.svg" alt="Xbox">
+            </a>
+            <a href="https://launcher.store.epicgames.com/u/15ec38a4dd564616934cf7ac0802aa47" target="_blank" data-title="Epic Games">
+                <img src="Epic_Games_logo.svg" alt="Epic Games">
+            </a>
+        </div>
+
+        <!-- LINHA -->
+        <div class="divider"></div>
+
+        <!-- ABAS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="profile">Profile</button>
+            <button class="tab-btn" data-tab="games">Games</button>
+            <button class="tab-btn" data-tab="reviews">Reviews</button>
+            <button class="tab-btn" data-tab="blog">Blog</button>
+        </div>
+
+        <!-- ==================== PROFILE ==================== -->
+        <div class="tab-content active" id="profile">
+            <div class="profile-grid">
+                <!-- Bio -->
+                <div class="bio-box">
+                    <h3>Sobre mim</h3>
+                    <p>
+                        Gamer desde sempre. Apaixonado por RPGs, soulslike e histórias épicas. 
+                        Aqui você encontra minha jornada pelos mundos virtuais, conquistas, reviews honestas 
+                        e um pouco do caos organizado que é jogar sem parar.  
+                        <br><br>
+                        “Gameplay em Desordem” não é só um slogan… é um estilo de vida.
+                    </p>
+                </div>
+
+                <!-- 5 Jogos Favoritos -->
+                <div class="fav-games">
+                    <h3>Jogos Favoritos</h3>
+                    <div class="fav-grid">
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="Elden Ring"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="Sekiro"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="Cyberpunk"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" alt="Witcher 3"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="RDR2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <span class="stat-number">187</span>
+                    <span class="stat-label">Games Jogados</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">42</span>
+                    <span class="stat-label">Jogados em 2026</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">31</span>
+                    <span class="stat-label">Jogos Platinados</span>
+                </div>
+            </div>
+
+            <!-- Recent Games -->
+            <h3 class="section-title">Jogos Jogados Recentes</h3>
+            <div class="recent-games">
+                <div class="recent-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="">
+                    <div class="info">
+                        <h4>Elden Ring</h4>
+                        <span>Última sessão: há 2 dias</span>
+                    </div>
+                </div>
+                <div class="recent-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/header.jpg" alt="">
+                    <div class="info">
+                        <h4>The Last of Us Part I</h4>
+                        <span>Última sessão: há 5 dias</span>
+                    </div>
+                </div>
+                <div class="recent-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg" alt="">
+                    <div class="info">
+                        <h4>Baldur's Gate 3</h4>
+                        <span>Última sessão: há 1 semana</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews recentes -->
+            <h3 class="section-title">Reviews Recentes</h3>
+            <div class="review-list">
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Elden Ring</h4>
+                        <p>Uma obra-prima. O world design é simplesmente perfeito. Cada canto esconde algo incrível. Mereceu cada hora investida.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Sekiro: Shadows Die Twice</h4>
+                        <p>O combate mais satisfatório que já experimentei. Difícil, mas justo. Quando você “clica”, vira vício.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Cyberpunk 2077</h4>
+                        <p>Depois de todas as atualizações, finalmente é o jogo que deveria ter sido no lançamento. Night City é viciante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== GAMES ==================== -->
+        <div class="tab-content" id="games">
+            <div class="games-header">
+                <h3 class="section-title" style="margin:0; text-align:left;">Minha Biblioteca</h3>
+                <input type="text" class="games-search" placeholder="Buscar jogo...">
+            </div>
+
+            <div class="games-grid">
+                <!-- Exemplos (você pode trocar as imagens depois) -->
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="">
+                    <div class="name">Elden Ring</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="">
+                    <div class="name">Sekiro</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="">
+                    <div class="name">Cyberpunk 2077</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" alt="">
+                    <div class="name">The Witcher 3</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="">
+                    <div class="name">Red Dead Redemption 2</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg" alt="">
+                    <div class="name">Baldur's Gate 3</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/library_600x900.jpg" alt="">
+                    <div class="name">The Last of Us Part I</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900.jpg" alt="">
+                    <div class="name">GTA V</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg" alt="">
+                    <div class="name">Hades</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1240440/library_600x900.jpg" alt="">
+                    <div class="name">Halo Infinite</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== REVIEWS ==================== -->
+        <div class="tab-content" id="reviews">
+            <h3 class="section-title">Todas as Reviews</h3>
+
+            <div class="review-list" id="reviews-page-1">
+                <!-- Página 1 (até 5) -->
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Elden Ring</h4>
+                        <p>Uma obra-prima. O world design é simplesmente perfeito. Cada canto esconde algo incrível.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Sekiro: Shadows Die Twice</h4>
+                        <p>O combate mais satisfatório que já experimentei. Difícil, mas justo.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Cyberpunk 2077</h4>
+                        <p>Depois de todas as atualizações, finalmente é o jogo que deveria ter sido no lançamento.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>The Witcher 3</h4>
+                        <p>Ainda o melhor RPG de mundo aberto já feito. As quests secundárias são melhores que a maioria dos jogos principais.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Red Dead Redemption 2</h4>
+                        <p>Uma experiência cinematográfica. O nível de detalhe é absurdo. Demora para começar, mas vale cada segundo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Página 2 (escondida) -->
+            <div class="review-list" id="reviews-page-2" style="display:none;">
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Baldur's Gate 3</h4>
+                        <p>Liberdade de escolha absurda. Cada decisão realmente importa. Já joguei 3 campanhas diferentes.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>The Last of Us Part I</h4>
+                        <p>Remake impecável. A história continua emocionante e a jogabilidade melhorou muito.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Hades</h4>
+                        <p>Roguelike perfeito. História, combate e trilha sonora no mesmo nível de excelência.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Grand Theft Auto V</h4>
+                        <p>Ainda extremamente divertido depois de tantos anos. O online é um universo à parte.</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1240440/library_600x900.jpg" alt="">
+                    <div class="text">
+                        <h4>Halo Infinite</h4>
+                        <p>O multiplayer é o melhor da série em muito tempo. A campanha é boa, mas o verdadeiro vício está no online.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reviews-pagination">
+                <button class="page-btn active" onclick="showReviewsPage(1)">1</button>
+                <button class="page-btn" onclick="showReviewsPage(2)">2</button>
+            </div>
+        </div>
+
+        <!-- ==================== BLOG ==================== -->
+        <div class="tab-content" id="blog">
+            <div class="blog-card" onclick="window.open('https://www.google.com', '_blank')">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_hero.jpg" alt="Elden Ring">
+                <div class="overlay">
+                    <h3>Elden Ring: Por que ainda é o melhor open-world</h3>
+                    <p>
+                        Mais de quatro anos depois do lançamento, Elden Ring continua sendo a referência máxima 
+                        de design de mundo aberto. Vamos falar sobre o que o torna tão especial e por que 
+                        nenhum jogo conseguiu superá-lo até agora...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p class="rodape-texto">Gameplay em Desordem</p>
     </footer>
 
-    <script src="javascript/doc.js"></script>
+    <script>
+        // Troca de abas
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active de todos
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Ativa o clicado
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Paginação de reviews
+        function showReviewsPage(page) {
+            document.getElementById('reviews-page-1').style.display = page === 1 ? 'flex' : 'none';
+            document.getElementById('reviews-page-2').style.display = page === 2 ? 'flex' : 'none';
+
+            // Atualiza botões
+            document.querySelectorAll('.page-btn').forEach((btn, index) => {
+                btn.classList.toggle('active', index + 1 === page);
+            });
+        }
+    </script>
 </body>
 </html>
