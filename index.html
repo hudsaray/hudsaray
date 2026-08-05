@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HudsaRay</title>
-   
+  
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-   
+  
     <!-- Ringbearer Font -->
     <link href="https://fonts.cdnfonts.com/css/ringbearer" rel="stylesheet">
-   
+  
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             min-height: 100vh;
             background: #000;
@@ -26,16 +21,12 @@
             display: flex;
             flex-direction: column;
         }
-
-        /* ========== CONTAINER DA CAPA + AVATAR ========== */
         .profile-header {
             position: relative;
             width: calc(100% - 40px);
             max-width: 1100px;
             margin: 30px auto 0;
         }
-
-        /* ========== CAPA ========== */
         .cover-section {
             position: relative;
             width: 100%;
@@ -43,10 +34,8 @@
             border-radius: 22px;
             overflow: hidden;
             border: 5px solid #000;
-            box-shadow: 0 0 0 3px #b8860b,
-                        0 15px 40px rgba(0,0,0,0.7);
+            box-shadow: 0 0 0 3px #b8860b, 0 15px 40px rgba(0,0,0,0.7);
         }
-
         .cover-img {
             width: 100%;
             height: 100%;
@@ -55,19 +44,14 @@
             display: block;
             filter: brightness(0.88);
         }
-
         .cover-section::after {
             content: "";
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 130px;
+            bottom: 0; left: 0;
+            width: 100%; height: 130px;
             background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
             pointer-events: none;
         }
-
-        /* ========== FOTO CIRCULAR ========== */
         .avatar-wrapper {
             position: absolute;
             bottom: -95px;
@@ -75,27 +59,18 @@
             transform: translateX(-50%);
             z-index: 30;
         }
-
         .fotocircular {
             width: 250px;
             height: 250px;
             border-radius: 50%;
             border: 8px solid #b8860b;
-            box-shadow:
-                0 0 40px rgba(184, 134, 11, 0.9),
-                0 15px 35px rgba(0,0,0,0.95),
-                0 0 0 4px rgba(0,0,0,0.6);
+            box-shadow: 0 0 40px rgba(184, 134, 11, 0.9), 0 15px 35px rgba(0,0,0,0.95), 0 0 0 4px rgba(0,0,0,0.6);
             object-fit: cover;
             background: #111;
             display: block;
             transition: transform 0.3s ease;
         }
-
-        .fotocircular:hover {
-            transform: scale(1.04);
-        }
-
-        /* ========== CONTEÚDO PRINCIPAL ========== */
+        .fotocircular:hover { transform: scale(1.04); }
         .content {
             position: relative;
             z-index: 5;
@@ -106,20 +81,15 @@
             margin: 0 auto;
             width: 100%;
         }
-
         .titulo {
             font-family: 'Ringbearer', serif;
             font-size: 54px;
             font-weight: bold;
             color: #e8c670;
             margin-top: 5px;
-            text-shadow:
-                0 0 12px rgba(232, 198, 112, 0.9),
-                3px 3px 8px rgba(0, 0, 0, 0.95);
+            text-shadow: 0 0 12px rgba(232, 198, 112, 0.9), 3px 3px 8px rgba(0, 0, 0, 0.95);
             letter-spacing: 4px;
         }
-
-        /* ========== LINKS SOCIAIS ========== */
         .container-links {
             margin-top: 42px;
             display: flex;
@@ -128,7 +98,6 @@
             gap: 38px;
             flex-wrap: wrap;
         }
-
         .container-links a {
             position: relative;
             font-size: 70px;
@@ -139,24 +108,20 @@
             align-items: center;
             justify-content: center;
         }
-
         .container-links a img {
-            height: 70px;
-            width: auto;
-            filter: invert(1) sepia(1) saturate(5) hue-rotate(0deg);
-            transition: 0.4s;
-        }
-
+    height: 70px;
+    width: auto;
+    transition: 0.4s;
+}
         .container-links a:hover {
             color: #ffd700;
             transform: scale(1.22) rotate(6deg);
             text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
-
         .container-links a:hover img {
-            filter: invert(1) sepia(1) saturate(8) hue-rotate(20deg) drop-shadow(0 0 15px gold);
-        }
-
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
+}
         .container-links a::after {
             content: attr(data-title);
             position: absolute;
@@ -177,13 +142,10 @@
             pointer-events: none;
             transition: all 0.3s ease;
         }
-
         .container-links a:hover::after {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
-
-        /* ========== LINHA DIVISÓRIA ========== */
         .divider {
             width: 100%;
             max-width: 900px;
@@ -192,8 +154,6 @@
             margin: 50px auto 30px;
             opacity: 0.7;
         }
-
-        /* ========== ABAS ========== */
         .tabs {
             display: flex;
             justify-content: center;
@@ -201,7 +161,6 @@
             margin-bottom: 35px;
             flex-wrap: wrap;
         }
-
         .tab-btn {
             background: transparent;
             border: 2px solid #b8860b;
@@ -214,43 +173,28 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .tab-btn:hover {
             background: rgba(184, 134, 11, 0.15);
             color: #e8c670;
             box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
         }
-
         .tab-btn.active {
             background: #b8860b;
             color: #000;
             box-shadow: 0 0 20px rgba(184, 134, 11, 0.6);
         }
-
-        /* ========== CONTEÚDO DAS ABAS ========== */
         .tab-content {
             display: none;
             animation: fadeIn 0.4s ease;
             text-align: left;
         }
-
-        .tab-content.active {
-            display: block;
-        }
-
+        .tab-content.active { display: block; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* ========== PROFILE ========== */
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
+        /* Profile (mantido) */
+        .profile-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 30px; margin-bottom: 40px; }
         .bio-box {
             background: rgba(20, 20, 20, 0.9);
             border: 1px solid #b8860b;
@@ -258,35 +202,10 @@
             padding: 25px;
             box-shadow: 0 0 20px rgba(184, 134, 11, 0.15);
         }
-
-        .bio-box h3 {
-            font-family: 'Ringbearer', serif;
-            color: #e8c670;
-            font-size: 22px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .bio-box p {
-            color: #ddd;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        .fav-games h3 {
-            font-family: 'Ringbearer', serif;
-            color: #e8c670;
-            font-size: 22px;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
-        }
-
-        .fav-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-        }
-
+        .bio-box h3 { font-family: 'Ringbearer', serif; color: #e8c670; font-size: 22px; margin-bottom: 15px; letter-spacing: 1px; }
+        .bio-box p { color: #ddd; line-height: 1.6; font-size: 15px; }
+        .fav-games h3 { font-family: 'Ringbearer', serif; color: #e8c670; font-size: 22px; margin-bottom: 18px; letter-spacing: 1px; }
+        .fav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
         .fav-game {
             aspect-ratio: 2/3;
             border-radius: 10px;
@@ -296,26 +215,9 @@
             cursor: pointer;
             background: #111;
         }
-
-        .fav-game img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .fav-game:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(184, 134, 11, 0.5);
-        }
-
-        /* Stats */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 40px 0;
-        }
-
+        .fav-game img { width: 100%; height: 100%; object-fit: cover; }
+        .fav-game:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 10px 25px rgba(184, 134, 11, 0.5); }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
         .stat-card {
             background: rgba(20, 20, 20, 0.95);
             border: 1px solid #b8860b;
@@ -324,12 +226,7 @@
             text-align: center;
             transition: all 0.3s;
         }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(184, 134, 11, 0.35);
-        }
-
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(184, 134, 11, 0.35); }
         .stat-number {
             font-family: 'Ringbearer', serif;
             font-size: 42px;
@@ -338,14 +235,7 @@
             display: block;
             margin-bottom: 8px;
         }
-
-        .stat-label {
-            color: #c9a66b;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        /* Recent Games */
+        .stat-label { color: #c9a66b; font-size: 14px; letter-spacing: 1px; }
         .section-title {
             font-family: 'Ringbearer', serif;
             color: #e8c670;
@@ -354,14 +244,7 @@
             letter-spacing: 2px;
             text-align: center;
         }
-
-        .recent-games {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-bottom: 45px;
-        }
-
+        .recent-games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 45px; }
         .recent-card {
             background: rgba(20, 20, 20, 0.9);
             border: 1px solid #b8860b;
@@ -370,40 +253,12 @@
             transition: all 0.3s;
             cursor: pointer;
         }
-
-        .recent-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(184, 134, 11, 0.4);
-        }
-
-        .recent-card img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-        }
-
-        .recent-card .info {
-            padding: 12px;
-        }
-
-        .recent-card h4 {
-            color: #e8c670;
-            font-size: 15px;
-            margin-bottom: 4px;
-        }
-
-        .recent-card span {
-            color: #999;
-            font-size: 13px;
-        }
-
-        /* Reviews (Profile) */
-        .review-list {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
+        .recent-card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(184, 134, 11, 0.4); }
+        .recent-card img { width: 100%; height: 140px; object-fit: cover; }
+        .recent-card .info { padding: 12px; }
+        .recent-card h4 { color: #e8c670; font-size: 15px; margin-bottom: 4px; }
+        .recent-card span { color: #999; font-size: 13px; }
+        .review-list { display: flex; flex-direction: column; gap: 18px; }
         .review-item {
             display: flex;
             gap: 18px;
@@ -413,33 +268,18 @@
             padding: 16px;
             transition: all 0.3s;
         }
-
-        .review-item:hover {
-            box-shadow: 0 0 20px rgba(184, 134, 11, 0.3);
-        }
-
+        .review-item:hover { box-shadow: 0 0 20px rgba(184, 134, 11, 0.3); }
         .review-item img {
-            width: 80px;
-            height: 110px;
+            width: 80px; height: 110px;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #b8860b;
             flex-shrink: 0;
         }
+        .review-item .text h4 { color: #e8c670; font-size: 17px; margin-bottom: 6px; }
+        .review-item .text p { color: #ccc; font-size: 14px; line-height: 1.5; }
 
-        .review-item .text h4 {
-            color: #e8c670;
-            font-size: 17px;
-            margin-bottom: 6px;
-        }
-
-        .review-item .text p {
-            color: #ccc;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* ========== GAMES (estilo Steam) ========== */
+        /* ========== GAMES ========== */
         .games-header {
             display: flex;
             justify-content: space-between;
@@ -448,7 +288,6 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-
         .games-search {
             background: #111;
             border: 1px solid #b8860b;
@@ -458,17 +297,12 @@
             width: 260px;
             outline: none;
         }
-
-        .games-search::placeholder {
-            color: #888;
-        }
-
+        .games-search::placeholder { color: #888; }
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
         }
-
         .game-card {
             background: #111;
             border-radius: 10px;
@@ -476,57 +310,75 @@
             border: 1px solid #333;
             transition: all 0.3s;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
-
         .game-card:hover {
             border-color: #b8860b;
             transform: translateY(-6px);
             box-shadow: 0 8px 20px rgba(184, 134, 11, 0.35);
         }
-
         .game-card img {
             width: 100%;
-            height: 200px;
+            aspect-ratio: 2/3;
             object-fit: cover;
+            background: #1a1a1a;
+            display: block;
         }
-
+        .game-card .cover-fallback {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b8860b;
+            font-size: 28px;
+            font-weight: bold;
+        }
         .game-card .name {
-            padding: 10px;
-            font-size: 14px;
+            padding: 10px 8px;
+            font-size: 13px;
             color: #ddd;
             text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            line-height: 1.3;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        /* ========== REVIEWS TAB ========== */
-        .reviews-pagination {
+        .games-pagination {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            align-items: center;
+            gap: 8px;
             margin-top: 35px;
+            flex-wrap: wrap;
         }
-
-        .page-btn {
+        .page-btn, .page-arrow {
             background: transparent;
             border: 1px solid #b8860b;
             color: #c9a66b;
-            width: 38px;
+            min-width: 38px;
             height: 38px;
             border-radius: 50%;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        .page-btn:hover,
-        .page-btn.active {
+        .page-btn:hover, .page-btn.active, .page-arrow:hover {
             background: #b8860b;
             color: #000;
         }
-
-        /* ========== BLOG ========== */
+        .page-arrow {
+            border-radius: 20px;
+            padding: 0 12px;
+            font-size: 16px;
+        }
+        .reviews-pagination { display: flex; justify-content: center; gap: 10px; margin-top: 35px; }
         .blog-card {
             position: relative;
             width: 100%;
@@ -537,50 +389,22 @@
             cursor: pointer;
             transition: all 0.35s;
         }
-
-        .blog-card:hover {
-            transform: scale(1.015);
-            box-shadow: 0 0 30px rgba(184, 134, 11, 0.5);
-        }
-
-        .blog-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.55);
-        }
-
+        .blog-card:hover { transform: scale(1.015); box-shadow: 0 0 30px rgba(184, 134, 11, 0.5); }
+        .blog-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
         .blog-card .overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             padding: 25px;
             background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
         }
-
-        .blog-card h3 {
-            font-family: 'Ringbearer', serif;
-            color: #e8c670;
-            font-size: 26px;
-            margin-bottom: 8px;
-        }
-
-        .blog-card p {
-            color: #ddd;
-            font-size: 15px;
-            line-height: 1.5;
-            max-width: 700px;
-        }
-
-        /* ========== RODAPÉ ========== */
+        .blog-card h3 { font-family: 'Ringbearer', serif; color: #e8c670; font-size: 26px; margin-bottom: 8px; }
+        .blog-card p { color: #ddd; font-size: 15px; line-height: 1.5; max-width: 700px; }
         footer {
             padding: 22px 20px;
             border-top: 1px solid rgba(184, 134, 11, 0.3);
             text-align: center;
             margin-top: 40px;
         }
-
         .rodape-texto {
             font-family: 'Ringbearer', serif;
             font-size: 22px;
@@ -588,84 +412,40 @@
             text-shadow: 0 0 8px rgba(201, 166, 107, 0.5);
             letter-spacing: 2px;
         }
-
-        /* ========== RESPONSIVO ========== */
         @media (max-width: 900px) {
-            .profile-grid {
-                grid-template-columns: 1fr;
-            }
-            .fav-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-            .stats-row {
-                grid-template-columns: 1fr;
-            }
-            .recent-games {
-                grid-template-columns: 1fr;
-            }
+            .profile-grid { grid-template-columns: 1fr; }
+            .fav-grid { grid-template-columns: repeat(5, 1fr); }
+            .stats-row { grid-template-columns: 1fr; }
+            .recent-games { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
-            .profile-header {
-                width: calc(100% - 24px);
-                margin-top: 20px;
-            }
-            .cover-section {
-                height: 230px;
-                border-radius: 16px;
-                border-width: 4px;
-            }
-            .avatar-wrapper {
-                bottom: -75px;
-            }
-            .fotocircular {
-                width: 170px;
-                height: 170px;
-                border-width: 6px;
-            }
-            .content {
-                padding-top: 100px;
-            }
-            .titulo {
-                font-size: 36px;
-                letter-spacing: 2px;
-            }
-            .container-links {
-                gap: 28px;
-                margin-top: 32px;
-            }
-            .container-links a {
-                font-size: 54px;
-            }
-            .container-links a img {
-                height: 54px;
-            }
-            .container-links a::after {
-                display: none;
-            }
-            .tab-btn {
-                font-size: 15px;
-                padding: 8px 18px;
-            }
-            .fav-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .profile-header { width: calc(100% - 24px); margin-top: 20px; }
+            .cover-section { height: 230px; border-radius: 16px; border-width: 4px; }
+            .avatar-wrapper { bottom: -75px; }
+            .fotocircular { width: 170px; height: 170px; border-width: 6px; }
+            .content { padding-top: 100px; }
+            .titulo { font-size: 36px; letter-spacing: 2px; }
+            .container-links { gap: 28px; margin-top: 32px; }
+            .container-links a { font-size: 54px; }
+            .container-links a img { height: 54px; }
+            .container-links a::after { display: none; }
+            .tab-btn { font-size: 15px; padding: 8px 18px; }
+            .fav-grid { grid-template-columns: repeat(3, 1fr); }
+            .games-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .game-card .name { font-size: 12px; padding: 8px 6px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- CAPA + FOTO CIRCULAR -->
     <div class="profile-header">
         <div class="cover-section">
-            <img src="Gemini_Generated_Image_tya71ltya71ltya7.png" alt="Cover" class="cover-img">
+            <img src="XBOX25-Creator-Klobrille-BG-1920x1080-1-a0d4807845d8ea6d9201.jpg" alt="Cover" class="cover-img">
         </div>
         <div class="avatar-wrapper">
             <img src="foto4k.png" alt="HudsaRay" class="fotocircular">
         </div>
     </div>
 
-    <!-- CONTEÚDO -->
     <div class="content">
         <h1 class="titulo">HudsaRay</h1>
 
@@ -684,10 +464,8 @@
             </a>
         </div>
 
-        <!-- LINHA -->
         <div class="divider"></div>
 
-        <!-- ABAS -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="profile">Profile</button>
             <button class="tab-btn" data-tab="games">Games</button>
@@ -695,254 +473,135 @@
             <button class="tab-btn" data-tab="blog">Blog</button>
         </div>
 
-        <!-- ==================== PROFILE ==================== -->
+        <!-- PROFILE -->
         <div class="tab-content active" id="profile">
             <div class="profile-grid">
-                <!-- Bio -->
                 <div class="bio-box">
                     <h3>Sobre mim</h3>
                     <p>
-                        Gamer desde sempre. Apaixonado por RPGs, soulslike e histórias épicas. 
-                        Aqui você encontra minha jornada pelos mundos virtuais, conquistas, reviews honestas 
-                        e um pouco do caos organizado que é jogar sem parar.  
+                        Gamer desde sempre. Apaixonado por RPGs e histórias épicas. Aqui você encontra minha jornada gamer, conquistas, reviews honestas e um pouco do caos organizado que é jogar sem parar.
                         <br><br>
-                        “Gameplay em Desordem” não é só um slogan… é um estilo de vida.
+                        “Gameplay em Desordem” não é só um slogan… é jogar, se divertir e nem sempre ser o melhor.
                     </p>
                 </div>
-
-                <!-- 5 Jogos Favoritos -->
                 <div class="fav-games">
                     <h3>Jogos Favoritos</h3>
                     <div class="fav-grid">
-                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="Elden Ring"></div>
-                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="Sekiro"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/960910/library_600x900.jpg" alt="Heavy Rain"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1222140/library_600x900.jpg" alt="Detroit Become human"></div>
                         <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="Cyberpunk"></div>
-                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" alt="Witcher 3"></div>
-                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="RDR2"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/474960/library_600x900.jpg" alt="Quantum Break"></div>
+                        <div class="fav-game"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1172380/library_600x900.jpg" alt="Jedi Fallen Order"></div>
                     </div>
                 </div>
             </div>
-
-            <!-- Stats -->
             <div class="stats-row">
-                <div class="stat-card">
-                    <span class="stat-number">187</span>
-                    <span class="stat-label">Games Jogados</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">42</span>
-                    <span class="stat-label">Jogados em 2026</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">31</span>
-                    <span class="stat-label">Jogos Platinados</span>
-                </div>
+                <div class="stat-card"><span class="stat-number">742</span><span class="stat-label">Games Na Conta</span></div>
+                <div class="stat-card"><span class="stat-number">56</span><span class="stat-label">Jogados em 2025</span></div>
+                <div class="stat-card"><span class="stat-number">2</span><span class="stat-label">Jogos Platinados</span></div>
             </div>
-
-            <!-- Recent Games -->
             <h3 class="section-title">Jogos Jogados Recentes</h3>
             <div class="recent-games">
                 <div class="recent-card">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="">
-                    <div class="info">
-                        <h4>Elden Ring</h4>
-                        <span>Última sessão: há 2 dias</span>
-                    </div>
+                    <div class="info"><h4>Elden Ring</h4><span>Última sessão: há 2 dias</span></div>
                 </div>
                 <div class="recent-card">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/header.jpg" alt="">
-                    <div class="info">
-                        <h4>The Last of Us Part I</h4>
-                        <span>Última sessão: há 5 dias</span>
-                    </div>
+                    <div class="info"><h4>The Last of Us Part I</h4><span>Última sessão: há 5 dias</span></div>
                 </div>
                 <div class="recent-card">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg" alt="">
-                    <div class="info">
-                        <h4>Baldur's Gate 3</h4>
-                        <span>Última sessão: há 1 semana</span>
-                    </div>
+                    <div class="info"><h4>Baldur's Gate 3</h4><span>Última sessão: há 1 semana</span></div>
                 </div>
             </div>
-
-            <!-- Reviews recentes -->
-            <h3 class="section-title">Reviews Recentes</h3>
+            <h3 class="section-title">Reviews Favoritas</h3>
             <div class="review-list">
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Elden Ring</h4>
-                        <p>Uma obra-prima. O world design é simplesmente perfeito. Cada canto esconde algo incrível. Mereceu cada hora investida.</p>
-                    </div>
+                    <div class="text"><h4>Elden Ring</h4><p>Uma obra-prima. O world design é simplesmente perfeito.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Sekiro: Shadows Die Twice</h4>
-                        <p>O combate mais satisfatório que já experimentei. Difícil, mas justo. Quando você “clica”, vira vício.</p>
-                    </div>
+                    <div class="text"><h4>Sekiro: Shadows Die Twice</h4><p>O combate mais satisfatório que já experimentei.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Cyberpunk 2077</h4>
-                        <p>Depois de todas as atualizações, finalmente é o jogo que deveria ter sido no lançamento. Night City é viciante.</p>
-                    </div>
+                    <div class="text"><h4>Cyberpunk 2077</h4><p>Depois de todas as atualizações, finalmente é o jogo que deveria ter sido.</p></div>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== GAMES ==================== -->
+        <!-- GAMES -->
         <div class="tab-content" id="games">
             <div class="games-header">
                 <h3 class="section-title" style="margin:0; text-align:left;">Minha Biblioteca</h3>
-                <input type="text" class="games-search" placeholder="Buscar jogo...">
+                <input type="text" class="games-search" id="gamesSearch" placeholder="Buscar jogo...">
             </div>
-
-            <div class="games-grid">
-                <!-- Exemplos (você pode trocar as imagens depois) -->
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="">
-                    <div class="name">Elden Ring</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="">
-                    <div class="name">Sekiro</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="">
-                    <div class="name">Cyberpunk 2077</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" alt="">
-                    <div class="name">The Witcher 3</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="">
-                    <div class="name">Red Dead Redemption 2</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg" alt="">
-                    <div class="name">Baldur's Gate 3</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/library_600x900.jpg" alt="">
-                    <div class="name">The Last of Us Part I</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900.jpg" alt="">
-                    <div class="name">GTA V</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg" alt="">
-                    <div class="name">Hades</div>
-                </div>
-                <div class="game-card">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1240440/library_600x900.jpg" alt="">
-                    <div class="name">Halo Infinite</div>
-                </div>
-            </div>
+            <div class="games-grid" id="gamesGrid"></div>
+            <div class="games-pagination" id="gamesPagination"></div>
         </div>
 
-        <!-- ==================== REVIEWS ==================== -->
+        <!-- REVIEWS -->
         <div class="tab-content" id="reviews">
             <h3 class="section-title">Todas as Reviews</h3>
-
             <div class="review-list" id="reviews-page-1">
-                <!-- Página 1 (até 5) -->
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Elden Ring</h4>
-                        <p>Uma obra-prima. O world design é simplesmente perfeito. Cada canto esconde algo incrível.</p>
-                    </div>
+                    <div class="text"><h4>Elden Ring</h4><p>Uma obra-prima. O world design é simplesmente perfeito.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Sekiro: Shadows Die Twice</h4>
-                        <p>O combate mais satisfatório que já experimentei. Difícil, mas justo.</p>
-                    </div>
+                    <div class="text"><h4>Sekiro: Shadows Die Twice</h4><p>O combate mais satisfatório que já experimentei.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Cyberpunk 2077</h4>
-                        <p>Depois de todas as atualizações, finalmente é o jogo que deveria ter sido no lançamento.</p>
-                    </div>
+                    <div class="text"><h4>Cyberpunk 2077</h4><p>Depois de todas as atualizações, finalmente é o jogo que deveria ter sido.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>The Witcher 3</h4>
-                        <p>Ainda o melhor RPG de mundo aberto já feito. As quests secundárias são melhores que a maioria dos jogos principais.</p>
-                    </div>
+                    <div class="text"><h4>The Witcher 3</h4><p>Ainda o melhor RPG de mundo aberto já feito.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Red Dead Redemption 2</h4>
-                        <p>Uma experiência cinematográfica. O nível de detalhe é absurdo. Demora para começar, mas vale cada segundo.</p>
-                    </div>
+                    <div class="text"><h4>Red Dead Redemption 2</h4><p>Uma experiência cinematográfica. O nível de detalhe é absurdo.</p></div>
                 </div>
             </div>
-
-            <!-- Página 2 (escondida) -->
             <div class="review-list" id="reviews-page-2" style="display:none;">
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Baldur's Gate 3</h4>
-                        <p>Liberdade de escolha absurda. Cada decisão realmente importa. Já joguei 3 campanhas diferentes.</p>
-                    </div>
+                    <div class="text"><h4>Baldur's Gate 3</h4><p>Liberdade de escolha absurda. Cada decisão realmente importa.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>The Last of Us Part I</h4>
-                        <p>Remake impecável. A história continua emocionante e a jogabilidade melhorou muito.</p>
-                    </div>
+                    <div class="text"><h4>The Last of Us Part I</h4><p>Remake impecável. A história continua emocionante.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Hades</h4>
-                        <p>Roguelike perfeito. História, combate e trilha sonora no mesmo nível de excelência.</p>
-                    </div>
+                    <div class="text"><h4>Hades</h4><p>Roguelike perfeito. História, combate e trilha sonora no mesmo nível.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Grand Theft Auto V</h4>
-                        <p>Ainda extremamente divertido depois de tantos anos. O online é um universo à parte.</p>
-                    </div>
+                    <div class="text"><h4>Grand Theft Auto V</h4><p>Ainda extremamente divertido depois de tantos anos.</p></div>
                 </div>
                 <div class="review-item">
                     <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1240440/library_600x900.jpg" alt="">
-                    <div class="text">
-                        <h4>Halo Infinite</h4>
-                        <p>O multiplayer é o melhor da série em muito tempo. A campanha é boa, mas o verdadeiro vício está no online.</p>
-                    </div>
+                    <div class="text"><h4>Halo Infinite</h4><p>O multiplayer é o melhor da série em muito tempo.</p></div>
                 </div>
             </div>
-
             <div class="reviews-pagination">
                 <button class="page-btn active" onclick="showReviewsPage(1)">1</button>
                 <button class="page-btn" onclick="showReviewsPage(2)">2</button>
             </div>
         </div>
 
-        <!-- ==================== BLOG ==================== -->
+        <!-- BLOG -->
         <div class="tab-content" id="blog">
             <div class="blog-card" onclick="window.open('https://www.google.com', '_blank')">
                 <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_hero.jpg" alt="Elden Ring">
                 <div class="overlay">
                     <h3>Elden Ring: Por que ainda é o melhor open-world</h3>
-                    <p>
-                        Mais de quatro anos depois do lançamento, Elden Ring continua sendo a referência máxima 
-                        de design de mundo aberto. Vamos falar sobre o que o torna tão especial e por que 
-                        nenhum jogo conseguiu superá-lo até agora...
-                    </p>
+                    <p>Mais de quatro anos depois do lançamento, Elden Ring continua sendo a referência máxima de design de mundo aberto...</p>
                 </div>
             </div>
         </div>
@@ -953,30 +612,870 @@
     </footer>
 
     <script>
-        // Troca de abas
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
+        // ========== LISTA COMPLETA COM APPID ==========
+       const allGames = [
+    { name: "3 out of 10: Season One (Inclui EP 4)", id: "1501820" },
+    { name: "9 Kings", id: "2784470" },
+    { name: "9 Years of Shadows", id: "1402120" },
+    { name: "60 Minutes to Extinction: Escape Room", id: "2587500" },
+    { name: "112 Operator", id: "1073840" },
+    { name: "A Plague Tale: Innocence", id: "752590" },
+    { name: "A Rat's Quest: The Way Back Home", id: "1152000" },
+    { name: "Abiotic Factor", id: "427410" },
+    { name: "Adventure Escape Mysteries", id: "2335190" },
+    { name: "Aeonic", id: "3277530" },
+    { name: "AER Memories of Old", id: "331870" },
+    { name: "Age of Empires: Definitive Edition", id: "1017900" },
+    { name: "Age of Empires II: Definitive Edition", id: "813780" },
+    { name: "Age of Empires III: Definitive Edition", id: "933110" },
+    { name: "Agony UNRATED", id: "879420" },
+    { name: "AirMech Strike", id: "206500" },
+    { name: "AK-xolotl", id: "1479140" },
+    { name: "Alan Wake Remastered", id: "108710" },
+    { name: "Albion Online", id: "761890" },
+    { name: "Al-Qadim: The Genie's Curse", id: "1904560" },
+    { name: "Ambition: A Minuet in Power", id: "942010" },
+    { name: "Amnesia: The Dark Descent", id: "57300" },
+    { name: "Amnesia: Rebirth", id: "999220" },
+    { name: "Amnesia: The Bunker", id: "1944430" },
+    { name: "Among Ass", id: "1477060" },
+    { name: "Among Us", id: "945360" },
+    { name: "Anno 1404 - History Edition", id: "1281630" },
+    { name: "Anno 1800", id: "916440" },
+    { name: "Another World – 20th Anniversary Edition", id: "233550" },
+    { name: "Aperture Desk Job", id: "1902490" },
+    { name: "Apex Legends", id: "1172470" },
+    { name: "Arcade Paradise", id: "1388870" },
+    { name: "Arcadegeddon", id: "1515640" },
+    { name: "Are You Smarter Than A 5th Grader", id: "1521160" },
+    { name: "Arena Breakout: Infinite", id: "2073620" },
+    { name: "ARK: Survival Evolved", id: "346110" },
+    { name: "Arranger: A Role-Puzzling Adventure", id: "2596420" },
+    { name: "Ashina: The Red Witch", id: "1259140" },
+    { name: "Ashworld", id: "580320" },
+    { name: "Asphalt Legends Unite", id: "1815780" },
+    { name: "Assassin's Creed IV Black Flag", id: "242050" },
+    { name: "Assassin's Creed Origins", id: "582160" },
+    { name: "Assassin's Creed Odyssey", id: "812140" },
+    { name: "Assassin's Creed Valhalla", id: "2208920" },
+    { name: "Auto Chess", id: "1222130" },
+    { name: "Automobilista 2", id: "1066890" },
+    { name: "AVICII Invector", id: "986800" },
+    { name: "Backpack Hero", id: "1970580" },
+    { name: "Baldur's Gate: Enhanced Edition", id: "228280" },
+    { name: "Baldur's Gate II: Enhanced Edition", id: "257350" },
+    { name: "Ball 3D: Soccer Online", id: "485610" },
+    { name: "Banana", id: "2923300" },
+    { name: "Barro F", id: "1239260" },
+    { name: "Barro 2021", id: "618140" },
+    { name: "Barro 22", id: "1797610" },
+    { name: "Barro F22", id: "1958600" },
+    { name: "Barro T23", id: "2379030" },
+    { name: "Barro 2024", id: "3119720" },
+    { name: "Batman: Arkham Asylum GOTY Edition", id: "35140" },
+    { name: "Batman: Arkham City - GOTY Edition", id: "200260" },
+    { name: "Batman: Arkham Knight", id: "208650" },
+    { name: "The Battle of Polytopia", id: "874390" },
+    { name: "BattleCore Arena", id: "2613870" },
+    { name: "Behind the Frame: The Finest Scenery", id: "1634150" },
+    { name: "Being a DIK - Season 1", id: "1126320" },
+    { name: "Ben There, Dan That!", id: "37400" },
+    { name: "Bendy and the Ink Machine", id: "622650" },
+    { name: "Berserk Boy", id: "1561340" },
+    { name: "Between Time: Escape Room", id: "1580150" },
+    { name: "Beyond Blue", id: "883360" },
+    { name: "Beyond: Two Souls", id: "960990" },
+    { name: "Billie's Wheelie", id: "3180310" },
+    { name: "BioShock (Classic)", id: "7670" },
+    { name: "BioShock Remastered", id: "409710" },
+    { name: "Black Squad", id: "550650" },
+    { name: "The Black Within", id: "2372870" },
+    { name: "BlackEye", id: "627410" },
+    { name: "Blackguards", id: "249650" },
+    { name: "Blackguards 2", id: "314830" },
+    { name: "Blackjack 21: Blackjackist", id: "1594910" },
+    { name: "Blackout Z: Slaughterhouse Edition", id: "729660" },
+    { name: "Blade of Darkness", id: "1710170" },
+    { name: "Blade Runner: Enhanced Edition", id: "1678420" },
+    { name: "Blood Omen: Legacy of Kain", id: "242960" },
+    { name: "Blood West", id: "1587130" },
+    { name: "Bloodstained: Ritual of the Night", id: "692850" },
+    { name: "Bloons TD 6", id: "960090" },
+    { name: "Borderlands 2", id: "49520" },
+    { name: "Borderlands: The Pre-Sequel", id: "261640" },
+    { name: "Botany Manor", id: "1425350" },
+    { name: "Boxes: Lost Fragments", id: "2019810" },
+    { name: "Bō: Path of the Teal Lotus", id: "1614440" },
+    { name: "Brawlhalla", id: "291550" },
+    { name: "The Bridge", id: "204240" },
+    { name: "Brigador: Up-Armored Edition", id: "274500" },
+    { name: "Brotato", id: "1942280" },
+    { name: "Bunny Guys!", id: "2218460" },
+    { name: "Bunny Hurling", id: "3515620" },
+    { name: "Bus Driver Simulator", id: "679260" },
+    { name: "Bus Simulator 21 Next Stop", id: "976590" },
+    { name: "Calico", id: "1112890" },
+    { name: "Call of Duty: Modern Warfare II", id: "1938090" },
+    { name: "The Callisto Protocol", id: "1544020" },
+    { name: "Captain Blood", id: "3040220" },
+    { name: "Car Mechanic Simulator 2018", id: "645630" },
+    { name: "Card Shark", id: "1271" },
+    { name: "Casino Roulette: Roulettist", id: "3601420" },
+    { name: "Cassette Beasts", id: "1321440" },
+    { name: "Cat Quest II", id: "914710" },
+    { name: "Catch Me!", id: "3381010" },
+    { name: "Chamber Survival", id: "2943780" },
+    { name: "Champions of Krynn", id: "1882480" },
+    { name: "Chasing Tails: A Promise in the Snow", id: "1555110" },
+    { name: "Chasm: The Rift", id: "2061230" },
+    { name: "Chessarama", id: "1831830" },
+    { name: "Chivalry 2", id: "1824220" },
+    { name: "CHUCHEL", id: "711660" },
+    { name: "Cities: Skylines", id: "255710" },
+    { name: "Cities: Skylines II", id: "949230" },
+    { name: "Citizen Sleeper", id: "1578650" },
+    { name: "Clair Obscur: Expedition 33", id: "1903340" },
+    { name: "Clone Drone in the Danger Zone", id: "597170" },
+    { name: "Close to the Sun", id: "968870" },
+    { name: "Colt Canyon", id: "940710" },
+    { name: "Commandos 3 - HD Remaster", id: "1469170" },
+    { name: "Control Ultimate Edition", id: "870780" },
+    { name: "Coromon", id: "1218210" },
+    { name: "Counter-Strike 2", id: "730" },
+    { name: "Cozy Grove", id: "1458100" },
+    { name: "The Crew 2", id: "646910" },
+    { name: "Crime Boss: Rockay City", id: "2933080" },
+    { name: "Crush Crush", id: "459820" },
+    { name: "Curse of the Azure Bonds", id: "1904" },
+    { name: "Cursed to Golf", id: "1726120" },
+    { name: "Cyberhunt", id: "636150" },
+    { name: "Cyberpunk 2077", id: "1091500" },
+    { name: "CyClones", id: "2464690" },
+    { name: "D&D Stronghold: Kingdom Simulator", id: "1904650" },
+    { name: "Dark Deception", id: "332950" },
+    { name: "Dark Deity", id: "1374840" },
+    { name: "Dark Envoy", id: "1288640" },
+    { name: "Dark Origins", id: "1412950" },
+    { name: "The Dark Queen of Krynn", id: "1904590" },
+    { name: "Dark Sky", id: "1454960" },
+    { name: "Dark Sun: Shattered Lands", id: "1882400" },
+    { name: "Dark Sun: Wake of the Ravager", id: "1904610" },
+    { name: "The Darkside Detective", id: "368390" },
+    { name: "The Darkside Detective: A Fumble in the Dark", id: "1295920" },
+    { name: "Dauntless", id: "2923180" },
+    { name: "Dead by Daylight", id: "381210" },
+    { name: "Dead Island 2", id: "934700" },
+    { name: "Death Knights of Krynn", id: "1882430" },
+    { name: "Death Squared", id: "471810" },
+    { name: "DEATH STRANDING DIRECTOR'S CUT", id: "1850570" },
+    { name: "DeathKeep", id: "2350540" },
+    { name: "Death's Door", id: "894020" },
+    { name: "Deceive Inc.", id: "820520" },
+    { name: "Deep Rock Galactic", id: "548430" },
+    { name: "Definitely Not Fried Chicken", id: "1036240" },
+    { name: "Delores: A Thimbleweed Park mini-adventure", id: "1305720" },
+    { name: "Delta Force", id: "2507950" },
+    { name: "Deponia", id: "214340" },
+    { name: "Depths of Horror: Mushroom Day", id: "1590840" },
+    { name: "Detroit: Become Human", id: "1222140" },
+    { name: "Deus Ex: Invisible War", id: "6920" },
+    { name: "Deus Ex: Game of the Year Edition", id: "6910" },
+    { name: "Deus Ex: Human Revolution - Director's Cut", id: "238010" },
+    { name: "Deus Ex: Mankind Divided", id: "337000" },
+    { name: "Dino running from a FURRY: GAMESFORFARM", id: "2170320" },
+    { name: "DIRT 5", id: "1038250" },
+    { name: "Dirt Bike Racer Simulator", id: "2557490" },
+    { name: "Disco Elysium - The Final Cut", id: "632470" },
+    { name: "Dishonored - Definitive Edition", id: "205100" },
+    { name: "Disney Speedstorm", id: "1537830" },
+    { name: "Disney's Chicken Little", id: "33920" },
+    { name: "DOOM (1993)", id: "2280" },
+    { name: "DOOM 64", id: "1148590" },
+    { name: "DOOM Eternal", id: "782330" },
+    { name: "DOOMBLADE", id: "1860080" },
+    { name: "Doors: Paradox", id: "1622770" },
+    { name: "Down in Bermuda", id: "1107300" },
+    { name: "Dragons of Flame", id: "1904640" },
+    { name: "DragonStrike", id: "2350520" },
+    { name: "DrakulA", id: "1534770" },
+    { name: "Dream Tactics", id: "1897650" },
+    { name: "Dreamscaper", id: "1040420" },
+    { name: "Drift86", id: "1070580" },
+    { name: "Drug Dealer Simulator", id: "682990" },
+    { name: "Duck Paradox", id: "2058150" },
+    { name: "Duet Night Abyss", id: "2819840" },
+    { name: "Dungeon Hack", id: "262060" },
+    { name: "Eastern Exorcist", id: "1120810" },
+    { name: "Echo Generation: Midnight Edition", id: "1072300" },
+    { name: "Eets Munchies", id: "214550" },
+    { name: "eFootball", id: "1665460" },
+    { name: "El Hijo - A Wild West Tale", id: "853050" },
+    { name: "ELDERBORN", id: "727850" },
+    { name: "Electrician Simulator", id: "1080020" },
+    { name: "Elite Dangerous", id: "359320" },
+    { name: "Empires Apart", id: "530630" },
+    { name: "EMPTY SHELL", id: "2243110" },
+    { name: "Empyrion - Galactic Survival", id: "383120" },
+    { name: "En Garde!", id: "1654660" },
+    { name: "ENDER LILIES: Quietus of the Knights", id: "1369630" },
+    { name: "Escape Academy", id: "1812090" },
+    { name: "The Escapists 2", id: "641990" },
+    { name: "The Eternal Cylinder", id: "865680" },
+    { name: "Eternights", id: "1402110" },
+    { name: "The Exit 8", id: "2653790" },
+    { name: "Eye of the Beholder", id: "1425330" },
+    { name: "Eye of the Beholder II: The Legend of Darkmoon", id: "1882460" },
+    { name: "Eye of the Beholder III: Assault on Myth Drannor", id: "1904530" },
+    { name: "The Falconeer", id: "1135260" },
+    { name: "Fall Guys", id: "1097150" },
+    { name: "Fallout", id: "38400" },
+    { name: "Fallout 2", id: "38410" },
+    { name: "Fallout 3: Game of the Year Edition", id: "22370" },
+    { name: "Fallout 4", id: "377160" },
+    { name: "Fallout: New Vegas", id: "22380" },
+    { name: "Fantasy Empires", id: "2350530" },
+    { name: "Fantasy General", id: "1741120" },
+    { name: "Fantasy Strike", id: "390560" },
+    { name: "Far Cry 4", id: "298110" },
+    { name: "Far Cry 5", id: "552520" },
+    { name: "Far Cry 3", id: "220240" },
+    { name: "Far Cry Primal", id: "371660" },
+    { name: "Farming Simulator 25", id: "2300320" },
+    { name: "Fashion Police Squad", id: "1319460" },
+    { name: "FATE", id: "246840" },
+    { name: "FATE: Undiscovered Realms", id: "276890" },
+    { name: "FATE: The Traitor Soul", id: "315260" },
+    { name: "FATE: The Cursed King", id: "326840" },
+    { name: "Fear the Spotlight", id: "1959390" },
+    { name: "Felix The Reaper", id: "919410" },
+    { name: "Fetish Locator Week One", id: "1860010" },
+    { name: "Figment", id: "493540" },
+    { name: "Figment 2: Creed Valley", id: "1085220" },
+    { name: "Filthy Animals | Heist Simulator", id: "1195420" },
+    { name: "Firelight Fantasy: Force Energy", id: "1619330" },
+    { name: "Firestone Online Idle RPG", id: "1013320" },
+    { name: "The First Descendant", id: "2074920" },
+    { name: "Five Nights at Freddy's: Into the Pit", id: "2638370" },
+    { name: "Floppy Knights", id: "1057800" },
+    { name: "Forager", id: "825630" },
+    { name: "The Forest", id: "242760" },
+    { name: "Foretales", id: "1170080" },
+    { name: "Forgotten Realms: Unlimited Adventures", id: "627690" },
+    { name: "Fort Solis", id: "1931730" },
+    { name: "Forza Horizon 5", id: "1551360" },
+    { name: "FRAMED Collection", id: "322450" },
+    { name: "Fruitbus", id: "2484130" },
+    { name: "Furry BDSM", id: "2502600" },
+    { name: "Gamedec - Definitive Edition", id: "917720" },
+    { name: "Garden Story", id: "1062140" },
+    { name: "Garfield Kart - Furious Racing", id: "1085510" },
+    { name: "Gas Station Simulator", id: "1149620" },
+    { name: "Gateway to the Savage Frontier", id: "1904690" },
+    { name: "Tom Clancy's Ghost Recon Breakpoint", id: "2231380" },
+    { name: "Tom Clancy's Ghost Recon Wildlands", id: "460930" },
+    { name: "Ghost Song", id: "347800" },
+    { name: "Ghostbusters: Spirits Unleashed", id: "2388630" },
+    { name: "Ghostrunner 2", id: "2144740" },
+    { name: "Ghostwire: Tokyo", id: "1475810" },
+    { name: "G.I. Joe: Wrath of Cobra", id: "2516170" },
+    { name: "Gigantic: Rampage Edition", id: "2165810" },
+    { name: "Gloomhaven", id: "780290" },
+    { name: "God's Trigger", id: "488730" },
+    { name: "Godzilla Voxel Wars", id: "2430540" },
+    { name: "Golf With Your Friends", id: "431240" },
+    { name: "Gotham Knights", id: "1496790" },
+    { name: "Governor of Poker 3", id: "438080" },
+    { name: "Grand Theft Auto V", id: "271590" },
+    { name: "GrandChase", id: "985810" },
+    { name: "Graveyard Keeper", id: "599140" },
+    { name: "Gravity Circuit", id: "857080" },
+    { name: "GreedFall", id: "606890" },
+    { name: "Green Hell", id: "815370" },
+    { name: "GRIP: Combat Racing", id: "396900" },
+    { name: "Grounded", id: "962130" },
+    { name: "Growtopia", id: "2459950" },
+    { name: "The Gunk", id: "1087030" },
+    { name: "Gunslugs", id: "260000" },
+    { name: "Gunslugs 2", id: "340050" },
+    { name: "Gunslugs 3: Rogue Tactics", id: "1146310" },
+    { name: "Hack and Slash Fury", id: "1904790" },
+    { name: "Halo Infinite", id: "1240440" },
+    { name: "Halo: Spartan Strike", id: "330820" },
+    { name: "Halo: The Master Chief Collection", id: "976730" },
+    { name: "Happy Game", id: "1153880" },
+    { name: "Happy's Humble Burger Farm", id: "1433340" },
+    { name: "Hard West 2", id: "1282410" },
+    { name: "Hardspace: Shipbreaker", id: "1161580" },
+    { name: "Harold Halibut", id: "924750" },
+    { name: "Harry Potter: Quidditch Champions", id: "2878600" },
+    { name: "Havendock", id: "2020710" },
+    { name: "Heavy Rain", id: "960910" },
+    { name: "Hell Let Loose", id: "1056040" },
+    { name: "Hell Pie", id: "889910" },
+    { name: "Hellslave", id: "1608450" },
+    { name: "Helping the Hotties", id: "1479810" },
+    { name: "Hentai BDSM", id: "1719670" },
+    { name: "Hero Zero", id: "482920" },
+    { name: "Heroes of Loot", id: "302060" },
+    { name: "Heroes of Loot 2", id: "441870" },
+    { name: "Heroes of the Lance", id: "1882420" },
+    { name: "Hero's Hour", id: "1656780" },
+    { name: "Hexguardian", id: "2282300" },
+    { name: "Hidden Folks", id: "435400" },
+    { name: "Hillsfar", id: "1904525" },
+    { name: "HITMAN World of Assassination", id: "1659040" },
+    { name: "Hitman: Codename 47", id: "6900" },
+    { name: "Hive Jump 2: Survivors", id: "2549040" },
+    { name: "Hogwarts Legacy", id: "990080" },
+    { name: "Hollow Knight: Silksong", id: "1030300" },
+    { name: "Honkai: Star Rail", id: "1671200" },
+    { name: "Hot Brass", id: "892860" },
+    { name: "HOT WHEELS UNLEASHED", id: "1271700" },
+    { name: "HOT WHEELS UNLEASHED 2 - Turbocharged", id: "2051120" },
+    { name: "House Flipper", id: "613100" },
+    { name: "House of Golf 2", id: "2914390" },
+    { name: "House Party", id: "612300" },
+    { name: "Hue", id: "383270" },
+    { name: "Humankind", id: "1124300" },
+    { name: "HuniePop", id: "339800" },
+    { name: "Hyper Echelon", id: "953330" },
+    { name: "Hyper Simon X", id: "1321700" },
+    { name: "Hypnospace Outlaw", id: "844590" },
+    { name: "I Have No Mouth, and I Must Scream", id: "245390" },
+    { name: "Idle Champions of the Forgotten Realms", id: "627690" },
+    { name: "INDUSTRIA", id: "1172650" },
+    { name: "Injustice 2", id: "627270" },
+    { name: "Injustice: Gods Among Us Ultimate Edition", id: "242700" },
+    { name: "INSIDE", id: "304430" },
+    { name: "Into the Breach", id: "590380" },
+    { name: "Invincible Presents: Atom Eve", id: "2060870" },
+    { name: "IQ Under Construction", id: "2475450" },
+    { name: "Isonzo", id: "1556790" },
+    { name: "The Jackbox Party Pack 4", id: "610180" },
+    { name: "Jennifer Wilde: Unlikely Revolutionaries", id: "1251820" },
+    { name: "Jorel’s Brother and The Most Important Game of the Galaxy", id: "1932330" },
+    { name: "Jotunnslayer: Hordes of Hel", id: "2822180" },
+    { name: "Jupiter Hell", id: "811320" },
+    { name: "Jurassic World Evolution", id: "648350" },
+    { name: "Kamaeru: A Frog Refuge", id: "1978150" },
+    { name: "Kandidatos", id: "1943480" },
+    { name: "Kandidatos Kart", id: "2061290" },
+    { name: "Kerbal Space Program", id: "220200" },
+    { name: "KeyWe", id: "1242980" },
+    { name: "KILL KNIGHT", id: "2669410" },
+    { name: "Killer Instinct", id: "577940" },
+    { name: "Killing Floor 2", id: "232090" },
+    { name: "KinnikuNeko: SUPER MUSCLE CAT", id: "2340330" },
+    { name: "Knights of Pen and Paper 2", id: "310060" },
+    { name: "Last Escape", id: "1661600" },
+    { name: "The Last Show of Mr. Chardish", id: "1169740" },
+    { name: "The Last Spell", id: "1105670" },
+    { name: "The Last Stand: Aftermath", id: "1266840" },
+    { name: "Leap of Faith", id: "1479820" },
+    { name: "Leap of Love", id: "1179780" },
+    { name: "Left 4 Dead", id: "500" },
+    { name: "Left 4 Dead 2", id: "550" },
+    { name: "Legacy of Kain: Blood Omen 2", id: "242960" },
+    { name: "Legend of Keepers", id: "978520" },
+    { name: "Legend of Ymir", id: "4172530" },
+    { name: "Legion TD 2", id: "469600" },
+    { name: "LEGO 2K Drive", id: "1451940" },
+    { name: "LEGO Marvel Super Heroes", id: "249130" },
+    { name: "LEGO Star Wars - The Complete Saga", id: "32440" },
+    { name: "LEGO Star Wars: The Skywalker Saga", id: "920210" },
+    { name: "LEGO The Hobbit", id: "285110" },
+    { name: "LEGO The Lord of the Rings", id: "214510" },
+    { name: "Lethal Honor - Order of the Apocalypse", id: "1182280" },
+    { name: "Let's Build a Zoo", id: "1547890" },
+    { name: "Liar's Bar", id: "3097560" },
+    { name: "Liberated", id: "1188810" },
+    { name: "Liberté", id: "1590180" },
+    { name: "The Life and Suffering of Sir Brante", id: "1272160" },
+    { name: "Life is Strange", id: "319630" },
+    { name: "Lifeless Planet Premier Edition", id: "261530" },
+    { name: "LIMBO", id: "48000" },
+    { name: "LivingBattle", id: "1951560" },
+    { name: "LivingForest", id: "3027490" },
+    { name: "LONESTAR", id: "2056210" },
+    { name: "Loop Hero", id: "1282730" },
+    { name: "Lovecraft's Untold Stories", id: "871420" },
+    { name: "Lucy Got Problems", id: "879510" },
+    { name: "Lust Theory - Season 1", id: "1516080" },
+    { name: "Luto", id: "1729740" },
+    { name: "Lysfanga: The Time Shift Warrior", id: "2161620" },
+    { name: "Machinarium", id: "40700" },
+    { name: "Mad Max", id: "234140" },
+    { name: "Mafia II (Classic)", id: "50130" },
+    { name: "Mafia II: Definitive Edition", id: "1030830" },
+    { name: "Mafia III: Definitive Edition", id: "360430" },
+    { name: "Mafia: Definitive Edition", id: "1030840" },
+    { name: "Mages of Mystralia", id: "527230" },
+    { name: "Magic: The Gathering Arena", id: "2141910" },
+    { name: "Mahokenshi", id: "1716840" },
+    { name: "Mail Time", id: "1607240" },
+    { name: "Mainframe Defenders", id: "1184810" },
+    { name: "Make Way", id: "2157200" },
+    { name: "ManaRocks", id: "762560" },
+    { name: "Manor Lords", id: "1363080" },
+    { name: "Marvel Rivals", id: "2767030" },
+    { name: "Marvel's Guardians of the Galaxy", id: "1088850" },
+    { name: "Marvel's Midnight Suns", id: "368260" },
+    { name: "Match3 mania!", id: "2206760" },
+    { name: "Medieval Dynasty", id: "1129580" },
+    { name: "Meganoid", id: "983670" },
+    { name: "Menzoberranzan", id: "1882430" },
+    { name: "Middle-earth: Shadow of Mordor", id: "241930" },
+    { name: "Middle-earth: Shadow of War", id: "356190" },
+    { name: "Midnight Fight Express", id: "1390410" },
+    { name: "Military Tanks", id: "1277160" },
+    { name: "Minecraft Dungeons", id: "1672970" },
+    { name: "Mining Mechs", id: "2602770" },
+    { name: "MONOPOLY Poker", id: "1322230" },
+    { name: "Monster Energy Supercross - The Official Videogame", id: "718750" },
+    { name: "Monster Harvest", id: "1363350" },
+    { name: "Monument Valley: Panorama Edition", id: "1920290" },
+    { name: "Monument Valley 2: Panorama Edition", id: "1927720" },
+    { name: "Moon Mystery", id: "2000210" },
+    { name: "Moonlighter", id: "606150" },
+    { name: "Moonrise Fall", id: "1035110" },
+    { name: "Moonscars", id: "1374970" },
+    { name: "Morbid: The Seven Acolytes", id: "1140890" },
+    { name: "Mordheim: City of the Damned", id: "276810" },
+    { name: "Mortal Kombat 1", id: "1978700" },
+    { name: "Mortal Kombat 11", id: "976310" },
+    { name: "MultiVersus", id: "1818750" },
+    { name: "MY HERO ULTRA RUMBLE", id: "1607250" },
+    { name: "My Night Job", id: "429660" },
+    { name: "Mystic Academy: Escape Room", id: "2834310" },
+    { name: "Narvas", id: "1584980" },
+    { name: "Necroking", id: "2852980" },
+    { name: "Necromunda: Hired Gun", id: "1237370" },
+    { name: "Need for Speed Heat", id: "1222680" },
+    { name: "Need for Speed Rivals", id: "1262600" },
+    { name: "NeuraGun", id: "1738500" },
+    { name: "Never Synth", id: "1738490" },
+    { name: "Neverwinter Nights: Enhanced Edition", id: "704450" },
+    { name: "New Tales from the Borderlands", id: "1457840" },
+    { name: "Nightingale", id: "1928980" },
+    { name: "NineHells", id: "2206750" },
+    { name: "Ninja Stealth 4", id: "1321710" },
+    { name: "No Man's Sky", id: "275850" },
+    { name: "No Straight Roads: Encore Edition", id: "1751440" },
+    { name: "Nobody Wants to Die", id: "1939970" },
+    { name: "Nocturnal", id: "1634080" },
+    { name: "Nova Lands", id: "1501610" },
+    { name: "Oaken", id: "1348690" },
+    { name: "Oddsparks: An Automation Adventure", id: "1817290" },
+    { name: "Once Human", id: "2139460" },
+    { name: "The Operator", id: "1771980" },
+    { name: "OTXO", id: "1608640" },
+    { name: "The Ouroboros King", id: "2017920" },
+    { name: "The Outer Worlds", id: "578650" },
+    { name: "The Outer Worlds: Spacer's Choice Edition", id: "1920490" },
+    { name: "Outliver: Tribulation", id: "1596130" },
+    { name: "Overcome Your Fears: Caretaker", id: "3550490" },
+    { name: "Overcooked!", id: "448510" },
+    { name: "Overlord", id: "11450" },
+    { name: "Paladins", id: "444090" },
+    { name: "Palindrome Syndrome: Escape Room", id: "1374290" },
+    { name: "Paquerette Down the Bunburrows", id: "1628610" },
+    { name: "Paradise Killer", id: "1160220" },
+    { name: "Pathway", id: "546430" },
+    { name: "PAYDAY 2", id: "218620" },
+    { name: "Pet Lands", id: "2663950" },
+    { name: "Phantasie Memorial Set", id: "1904730" },
+    { name: "PICO PARK", id: "1509960" },
+    { name: "Pilgrims", id: "1049280" },
+    { name: "Pinball Spire", id: "2633040" },
+    { name: "Pink Elephant", id: "2246180" },
+    { name: "Planes, Bullets and Vodka", id: "562360" },
+    { name: "Planet Coaster", id: "493340" },
+    { name: "Planet Zoo", id: "703080" },
+    { name: "PlateUp!", id: "1599600" },
+    { name: "PUBG: BATTLEGROUNDS", id: "578080" },
+    { name: "Poker Master", id: "994910" },
+    { name: "PolyClassic: Wild", id: "1594950" },
+    { name: "Pool of Radiance", id: "1904740" },
+    { name: "Pools of Darkness", id: "1904750" },
+    { name: "POPGOES Arcade", id: "1978090" },
+    { name: "POSTAL 2", id: "223470" },
+    { name: "Prey", id: "480490" },
+    { name: "Priest Simulator: Vampire Show", id: "843380" },
+    { name: "Prince of Persia: Warrior Within", id: "13500" },
+    { name: "Project Winter", id: "774861" },
+    { name: "Prop Sumo", id: "3089420" },
+    { name: "Psychonauts", id: "3830" },
+    { name: "Quantum Break", id: "474960" },
+    { name: "Rain World", id: "312520" },
+    { name: "Tom Clancy's Rainbow Six Siege", id: "359550" },
+    { name: "Ravenloft: Stone Prophet", id: "1904760" },
+    { name: "Ravenloft: Strahd's Possession", id: "2002570" },
+    { name: "RAYZE", id: "1689190" },
+    { name: "Razortron 2000", id: "1058200" },
+    { name: "Real Pool 3D - Poolians", id: "670290" },
+    { name: "Rebel Galaxy", id: "290300" },
+    { name: "Rebel Galaxy Outlaw", id: "910830" },
+    { name: "The Red Lantern", id: "1169000" },
+    { name: "Redemption Reapers", id: "2139300" },
+    { name: "Regular Factory: Escape Room", id: "2082210" },
+    { name: "REMATCH", id: "2167880" },
+    { name: "Remothered: Tormented Fathers", id: "633360" },
+    { name: "Republic of Jungle", id: "1413250" },
+    { name: "Resident Evil 2", id: "883710" },
+    { name: "Resident Evil 3", id: "952060" },
+    { name: "Resident Evil 5", id: "21690" },
+    { name: "Resident Evil Resistance", id: "1173690" },
+    { name: "Residual", id: "1292790" },
+    { name: "Return to Ash", id: "1981040" },
+    { name: "Riders Republic", id: "2218840" },
+    { name: "RIOT - Civil Unrest", id: "341150" },
+    { name: "River City Girls 2", id: "1920480" },
+    { name: "Road Redemption", id: "266010" },
+    { name: "ROBOBEAT", id: "1456760" },
+    { name: "RoboCop: Rogue City", id: "1681430" },
+    { name: "Rock 'N' Roll Defense", id: "438480" },
+    { name: "Rocket League", id: "252950" },
+    { name: "Rogue Waters", id: "2559360" },
+    { name: "Roller Champions", id: "2000800" },
+    { name: "RollerCoaster Tycoon 3: Complete Edition", id: "1368820" },
+    { name: "Rugrats: Adventures in Gameland", id: "2559190" },
+    { name: "Rustler (Grand Theft Horse)", id: "844260" },
+    { name: "Saints Row 2", id: "9480" },
+    { name: "Saints Row IV: Re-Elected", id: "319630" },
+    { name: "Saints Row: Gat out of Hell", id: "318100" },
+    { name: "Saints Row: The Third Remastered", id: "978300" },
+    { name: "Samorost 2", id: "40720" },
+    { name: "Samorost 3", id: "421120" },
+    { name: "SAMURAI SHODOWN NEOGEO COLLECTION", id: "1142010" },
+    { name: "Sands of Aura", id: "1119840" },
+    { name: "Sapphire Safari", id: "1479780" },
+    { name: "Scarf", id: "645320" },
+    { name: "ScourgeBringer", id: "1037020" },
+    { name: "Sea of Thieves", id: "1172620" },
+    { name: "Secret of the Silver Blades", id: "1882480" },
+    { name: "Sentience: The Android's Tale", id: "1585650" },
+    { name: "Session: Skate Sim", id: "861650" },
+    { name: "Shadow of the Tomb Raider: Definitive Edition", id: "750920" },
+    { name: "Shadow Sorcerer", id: "1904790" },
+    { name: "Shadowrun: Dragonfall - Director's Cut", id: "300550" },
+    { name: "Shadowrun Hong Kong - Extended Edition", id: "346940" },
+    { name: "Shadowrun Returns", id: "234650" },
+    { name: "Sherlock Holmes: The Mystery of the Mummy", id: "11130" },
+    { name: "Shogun Showdown", id: "2084000" },
+    { name: "Showgunners", id: "1159290" },
+    { name: "Sid Meier's Civilization III Complete", id: "3990" },
+    { name: "Sid Meier's Civilization IV: The Complete Edition", id: "3900" },
+    { name: "Sid Meier's Civilization VI", id: "289070" },
+    { name: "Siege of Avalon: Anthology", id: "1558920" },
+    { name: "Sifu", id: "2138710" },
+    { name: "Sin Slayers: Reign of The 8th", id: "2790000" },
+    { name: "Sir Questionnaire", id: "2124790" },
+    { name: "Sir Whoopass™: Immortal Death", id: "1240590" },
+    { name: "Size Matters", id: "976700" },
+    { name: "SKALD: Against the Black Priory", id: "1069160" },
+    { name: "Sky Racket", id: "994500" },
+    { name: "SkyDrift Infinity", id: "836540" },
+    { name: "SLUDGE LIFE", id: "1145940" },
+    { name: "SMITE", id: "386360" },
+    { name: "The Smurfs 2 - The Prisoner of the Green Stone", id: "2396180" },
+    { name: "Snakebird Complete", id: "2582130" },
+    { name: "Sniper Ghost Warrior 2", id: "34870" },
+    { name: "Snowbreak: Containment Zone", id: "2668080" },
+    { name: "Sol Cesto", id: "2738490" },
+    { name: "Songs of Conquest", id: "867210" },
+    { name: "Songs of Silence", id: "2195410" },
+    { name: "Sorry We're Closed", id: "1796580" },
+    { name: "Soulstice", id: "1602080" },
+    { name: "South of the Circle", id: "1811040" },
+    { name: "South Park™: The Stick of Truth™", id: "213670" },
+    { name: "Space Accident", id: "1805970" },
+    { name: "Space Grunts", id: "371430" },
+    { name: "Space Grunts 2", id: "1124690" },
+    { name: "Space Hulk: Deathwing - Enhanced Edition", id: "801630" },
+    { name: "Speed Brawl", id: "468670" },
+    { name: "Spellbreak", id: "1399780" },
+    { name: "Spelljammer: Pirates of Realmspace", id: "1904800" },
+    { name: "Spells & Secrets", id: "1517110" },
+    { name: "Spelunky", id: "239350" },
+    { name: "The Spirit and the Mouse", id: "1679210" },
+    { name: "Spirit of the North", id: "1213700" },
+    { name: "STALCRAFT: X", id: "1818450" },
+    { name: "Star Stuff", id: "2015940" },
+    { name: "STAR WARS™ Battlefront II (Classic, 2005)", id: "6060" },
+    { name: "STAR WARS™ Battlefront™ (2015)", id: "1237940" },
+    { name: "STAR WARS™ Galactic Battlegrounds Saga", id: "356500" },
+    { name: "STAR WARS Jedi: Fallen Order™", id: "1172380" },
+    { name: "STAR WARS™ Jedi Knight: Dark Forces II", id: "32380" },
+    { name: "STAR WARS™ Jedi Knight: Mysteries of the Sith", id: "32390" },
+    { name: "Star Wars Jedi: Survivor™", id: "1771300" },
+    { name: "STAR WARS™ Knights of the Old Republic™", id: "32370" },
+    { name: "STAR WARS™ Knights of the Old Republic™ II - The Sith Lords™", id: "208580" },
+    { name: "STAR WARS™ Rebellion", id: "356570" },
+    { name: "Starfield", id: "1716740" },
+    { name: "STASIS: BONE TOTEM", id: "1426010" },
+    { name: "State of Decay 2: Juggernaut Edition", id: "495420" },
+    { name: "SteamWorld Quest: Hand of Gilgamech", id: "804010" },
+    { name: "Steep", id: "460920" },
+    { name: "Stickman Killing Zombie", id: "1981050" },
+    { name: "Still There", id: "1063490" },
+    { name: "The Stone of Madness", id: "1379860" },
+    { name: "Strange Horticulture", id: "1574580" },
+    { name: "Stranger Things 3: The Game", id: "1097800" },
+    { name: "Stray", id: "1332010" },
+    { name: "Stray Gods: The Roleplaying Musical", id: "1928030" },
+    { name: "Strinova", id: "1282100" },
+    { name: "Styx: Master of Shadows", id: "242640" },
+    { name: "Styx: Shards of Darkness", id: "355790" },
+    { name: "Sugardew Island", id: "2711030" },
+    { name: "Suicide Squad: Kill the Justice League", id: "315210" },
+    { name: "Summer's Gone - Season 1", id: "2240150" },
+    { name: "Sunderfolk", id: "2414270" },
+    { name: "SUPER CRAZY RHYTHM CASTLE", id: "1812560" },
+    { name: "Super Meat Boy", id: "40800" },
+    { name: "Super Meat Boy Forever", id: "588650" },
+    { name: "Supermarket Together", id: "2709570" },
+    { name: "SurrounDead", id: "1645820" },
+    { name: "Syberia: The World Before", id: "1410640" },
+    { name: "Symphony of War: The Nephilim Saga", id: "1488200" },
+    { name: "Tales from the Borderlands", id: "330830" },
+    { name: "The Talos Principle", id: "257510" },
+    { name: "Tattoo Tycoon", id: "2375260" },
+    { name: "TBH: Task Bar Hero", id: "3678970" },
+    { name: "Tekken 7", id: "389730" },
+    { name: "Tekken 8", id: "1778820" },
+    { name: "Tell Me Why", id: "1180660" },
+    { name: "Batman - The Telltale Series", id: "498240" },
+    { name: "Terminull Brigade", id: "3104410" },
+    { name: "Terrors to Unveil: Day Off", id: "3587490" },
+    { name: "Tested on Humans: Escape Room", id: "1457220" },
+    { name: "The Texas Chain Saw Massacre", id: "1433140" },
+    { name: "Texas Hold'em Poker: Pokerist", id: "1219700" },
+    { name: "Tharsis", id: "323060" },
+    { name: "theHunter: Call of the Wild", id: "518790" },
+    { name: "Thibalryn", id: "926450" },
+    { name: "Thief II: The Metal Age", id: "211740" },
+    { name: "Thief: Deadly Shadows", id: "6980" },
+    { name: "Thief (2014)", id: "239160" },
+    { name: "Thief Gold", id: "211600" },
+    { name: "Thronebreaker: The Witcher Tales", id: "973760" },
+    { name: "Thunderbolt Poker", id: "1277140" },
+    { name: "Time Gentlemen, Please!", id: "37400" },
+    { name: "Tin Hearts", id: "1831700" },
+    { name: "Tiny Tina's Assault on Dragon Keep", id: "1712840" },
+    { name: "Tiny Tina's Wonderlands", id: "1286680" },
+    { name: "To The Rescue!", id: "946720" },
+    { name: "TOEM: A Photo Adventure", id: "1307580" },
+    { name: "TOMAK: Save the Earth Regeneration", id: "1738480" },
+    { name: "Tomb Raider I-III Remastered", id: "2478970" },
+    { name: "Tomb Raider IV-VI Remastered", id: "2525380" },
+    { name: "Tomb Raider: Anniversary", id: "8000" },
+    { name: "Tomb Raider: Legend", id: "7000" },
+    { name: "Tony Hawk's™ Pro Skater™ 1 + 2", id: "2395210" },
+    { name: "Torchlight II", id: "200710" },
+    { name: "Total War: ATTILA", id: "325610" },
+    { name: "Total War: PHARAOH DYNASTIES", id: "1937780" },
+    { name: "Total War: ROME II - Emperor Edition", id: "214950" },
+    { name: "Total War: THREE KINGDOMS", id: "779340" },
+    { name: "Totally Reliable Delivery Service", id: "1011670" },
+    { name: "Tower of Time", id: "617480" },
+    { name: "The Town of Light", id: "433170" },
+    { name: "Trackmania", id: "2225070" },
+    { name: "Train Valley", id: "353640" },
+    { name: "Transformice", id: "335240" },
+    { name: "Trash Goblin", id: "2407830" },
+    { name: "Treasure of Nadia", id: "1479760" },
+    { name: "Treasures of the Savage Frontier", id: "1904810" },
+    { name: "Trek to Yomi", id: "1370050" },
+    { name: "Troublemaker", id: "1498740" },
+    { name: "True Fear: Forsaken Souls Part 1", id: "440420" },
+    { name: "True Fear: Forsaken Souls Part 2", id: "935580" },
+    { name: "TT Isle of Man (Ride on the Edge)", id: "626610" },
+    { name: "TT Isle of Man Ride on the Edge 2", id: "1082180" },
+    { name: "Turmoil", id: "361280" },
+    { name: "Turnip Boy Robs a Bank", id: "2097230" },
+    { name: "Two Point Hospital", id: "535930" },
+    { name: "UBERMOSH", id: "357070" },
+    { name: "UBERMOSH:BLACK", id: "444940" },
+    { name: "UBERMOSH Vol.3", id: "515570" },
+    { name: "UBERMOSH Vol.5", id: "611800" },
+    { name: "UBERMOSH Vol.7", id: "1058210" },
+    { name: "UBERMOSH:WRAITH", id: "586350" },
+    { name: "UBERMOSH:SANTICIDE", id: "898450" },
+    { name: "UBERMOSH:OMEGA", id: "1181000" },
+    { name: "Uncanny Tales: Cold Road", id: "3534240" },
+    { name: "Universe For Sale", id: "1627840" },
+    { name: "Vampire: The Masquerade - Reckoning of New York", id: "2968390" },
+    { name: "Veil of Darkness", id: "1904820" },
+    { name: "Venba", id: "1493970" },
+    { name: "Veterans Online", id: "492840" },
+    { name: "Viewfinder", id: "1382070" },
+    { name: "Voidwalkers: The Gates of Hell", id: "2495670" },
+    { name: "Voidwrought", id: "2587780" },
+    { name: "The Walking Dead", id: "207610" },
+    { name: "War of the Lance", id: "1904830" },
+    { name: "War Thunder", id: "236390" },
+    { name: "Warframe", id: "230410" },
+    { name: "Wargame Construction Set III: Age of Rifles 1846-1905", id: "2707280" },
+    { name: "Warhammer 40,000: Speed Freeks", id: "2078450" },
+    { name: "Warhammer 40,000: Gladius - Relics of War", id: "489630" },
+    { name: "Watch Dogs: Legion", id: "2239550" },
+    { name: "Watch_Dogs", id: "243470" },
+    { name: "Watch_Dogs 2", id: "447040" },
+    { name: "Watchmen: The End Is Nigh", id: "13011" },
+    { name: "We Were Here Together", id: "865360" },
+    { name: "Weakless", id: "1084840" },
+    { name: "Welcome to the Game", id: "720250" },
+    { name: "Wheel World", id: "1497460" },
+    { name: "Where Winds Meet", id: "3564740" },
+    { name: "Wild Country", id: "1515000" },
+    { name: "Wild Terra 2: New Lands", id: "1134700" },
+    { name: "Wildgate", id: "3504780" },
+    { name: "Winexy", id: "577740" },
+    { name: "Witch It", id: "559650" },
+    { name: "The Witcher 3: Wild Hunt", id: "292030" },
+    { name: "The Witcher: Enhanced Edition", id: "20900" },
+    { name: "Wolfenstein: The New Order", id: "201810" },
+    { name: "World of Warships", id: "552990" },
+    { name: "World War Z", id: "688130" },
+    { name: "The Wraith of the Galaxy", id: "1861010" },
+    { name: "WRC 7 FIA World Rally Championship", id: "621830" },
+    { name: "WRC 8 FIA World Rally Championship", id: "1007070" },
+    { name: "WRC 9 FIA World Rally Championship", id: "1288420" },
+    { name: "WRC 10 FIA World Rally Championship", id: "1462810" },
+    { name: "Wuthering Waves", id: "3513350" },
+    { name: "XCOM 2", id: "268500" },
+    { name: "XCOM: Chimera Squad", id: "882100" },
+    { name: "XCOM: Enemy Unknown", id: "200510" },
+    { name: "Yakuza 0", id: "638970" },
+    { name: "Yes, Your Grace", id: "1115690" },
+    { name: "Yet Another Zombie Defense HD", id: "674750" },
+    { name: "You Will Die Here Tonight", id: "1446350" },
+    { name: "Zero Hour", id: "1359090" },
+    { name: "Zoeti", id: "1434540" },
+    { name: "Zombie Army 4: Dead War", id: "694280" },
+    { name: "Zoria: Age of Shattering", id: "1159090" },
+    { name: "Zuma Deluxe", id: "3330" },
+    { name: "Zuma's Revenge!", id: "3620" }
+];
 
-        tabBtns.forEach(btn => {
+        // ========== CONFIG ==========
+        const GAMES_PER_PAGE = 50;
+        let currentPage = 1;
+        let filteredGames = [...allGames];
+        let pageGroupStart = 1;
+
+        function getCoverUrl(id) {
+            if (!id) return null;
+            return `https://cdn.cloudflare.steamstatic.com/steam/apps/${id}/library_600x900.jpg`;
+        }
+
+        function renderGames() {
+            const grid = document.getElementById('gamesGrid');
+            const start = (currentPage - 1) * GAMES_PER_PAGE;
+            const end = start + GAMES_PER_PAGE;
+            const pageGames = filteredGames.slice(start, end);
+
+            grid.innerHTML = '';
+
+            if (pageGames.length === 0) {
+                grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#c9a66b;padding:40px;">Nenhum jogo encontrado.</p>';
+                return;
+            }
+
+            pageGames.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+
+                const coverUrl = getCoverUrl(game.id);
+                if (coverUrl) {
+                    card.innerHTML = `
+                        <img src="${coverUrl}" alt="${game.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="cover-fallback" style="display:none;">${game.name.charAt(0).toUpperCase()}</div>
+                        <div class="name">${game.name}</div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="cover-fallback">${game.name.charAt(0).toUpperCase()}</div>
+                        <div class="name">${game.name}</div>
+                    `;
+                }
+                grid.appendChild(card);
+            });
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredGames.length / GAMES_PER_PAGE);
+            const pagination = document.getElementById('gamesPagination');
+            pagination.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            if (pageGroupStart > 1) {
+                const prev = document.createElement('button');
+                prev.className = 'page-arrow';
+                prev.innerHTML = '←';
+                prev.onclick = () => {
+                    pageGroupStart = Math.max(1, pageGroupStart - 5);
+                    renderPagination();
+                };
+                pagination.appendChild(prev);
+            }
+
+            const endGroup = Math.min(pageGroupStart + 4, totalPages);
+            for (let i = pageGroupStart; i <= endGroup; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'page-btn' + (i === currentPage ? ' active' : '');
+                btn.textContent = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderGames();
+                    window.scrollTo({ top: document.getElementById('games').offsetTop - 80, behavior: 'smooth' });
+                };
+                pagination.appendChild(btn);
+            }
+
+            if (endGroup < totalPages) {
+                const next = document.createElement('button');
+                next.className = 'page-arrow';
+                next.innerHTML = '→';
+                next.onclick = () => {
+                    pageGroupStart = endGroup + 1;
+                    renderPagination();
+                };
+                pagination.appendChild(next);
+            }
+        }
+
+        document.getElementById('gamesSearch').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            filteredGames = term === '' 
+                ? [...allGames] 
+                : allGames.filter(g => g.name.toLowerCase().includes(term));
+            currentPage = 1;
+            pageGroupStart = 1;
+            renderGames();
+        });
+
+        // Inicializa
+        renderGames();
+
+        // Abas
+        document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active de todos
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-
-                // Ativa o clicado
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 btn.classList.add('active');
                 document.getElementById(btn.dataset.tab).classList.add('active');
             });
         });
 
-        // Paginação de reviews
         function showReviewsPage(page) {
             document.getElementById('reviews-page-1').style.display = page === 1 ? 'flex' : 'none';
             document.getElementById('reviews-page-2').style.display = page === 2 ? 'flex' : 'none';
-
-            // Atualiza botões
-            document.querySelectorAll('.page-btn').forEach((btn, index) => {
-                btn.classList.toggle('active', index + 1 === page);
+            document.querySelectorAll('.reviews-pagination .page-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i + 1 === page);
             });
         }
     </script>
